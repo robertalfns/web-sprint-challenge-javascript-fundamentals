@@ -17,7 +17,7 @@ function myFunction() {
 
 //🚀🚀🚀 ⬇️ 📝 Explanation ⬇️ 📝 🚀🚀🚀: 
 
-
+// when nested funtions are created, they have access to the variables in the calling scope. If you comment out the line that calls nestedFunction, you will only see "I'm outside the function". That variable was created outside of myFunction, in the global scope. So when myFunction runs, it looks for the external variable. It doesn't find it in the local function scope, so it reaches to the little backpack it has of all the variables that were available to it at creation. It finds that it's assigned "I'm outside the function" and logs that. But included in the function definition for myFunction we have a second variable, internal and the second function, nestedFunction. In order to see what that does, we have to make sure that myFunction actually calls it, and when nestedFunction is called and executes it knows that it is supposed to log the variable internal. That variable doesn't exist within its own little private scope, but since it existed in myFunction before nestedFunction was defined, nestedFunction has stored it in its backpack and can pull it out and log it. 
 
 
 
@@ -60,10 +60,7 @@ const zooAnimals = [
   💡 NOTE: the array returned should be an array of strings, and each string should follow this pattern: "name: {name}, scientific: {scientific name}"
   */
 
-  function animalNames(/*Your Code Here*/){
-    /*Your Code Here*/
-  }
-  
+  function animalNames(
 
   /* 🦁🦁🦁 Request 2: .map() 🦁🦁🦁
   The zoo needs a list of all their animal's names converted to lower case. 
@@ -75,11 +72,7 @@ const zooAnimals = [
   💡 NOTE: Do some research for other methods that can help help you
   */
 
-  function lowerCaseNames(/*Your Code Here*/){
-    /*Your Code Here*/
-  }
-  
-  
+
   /* 🦁🦁🦁 Request 3: .filter() 🦁🦁🦁
   The zoo is concerned about animals with a lower population count. 
   Use lowPopulationAnimals to do the following: 
@@ -88,9 +81,9 @@ const zooAnimals = [
   3. Return this new array
   */
 
-  function lowPopulationAnimals(/*Your Code Here*/){
+   lowPopulationAnimals
     /*Your Code Here*/
-  }
+
   
 
   /* 🦁🦁🦁 Request 4: .reduce() 🦁🦁🦁
@@ -102,9 +95,9 @@ const zooAnimals = [
   💡 NOTE: Remember the reduce method takes two arguments: a callback (which itself takes two args - the accumulator and the item), and an initial value for the count. Check MDN/W3Schools for syntax!
   */
 
-  function USApop(/*Your Code Here*/){
+ 
     /*Your Code Here*/
-  }
+  
   
   
   // 🦁🦁🦁 Callbacks 🦁🦁🦁  
@@ -116,11 +109,9 @@ const zooAnimals = [
     💡 NOTE: The tests for 'consume' will pass if it is created correctly and also after you correctly complete the functions 'add' and 'greeting' below in Step 2.
   */
 
-  function consume(/*Your Code Here */){
-    /*Your Code Here */
+  function consume(a, b, cb){
+    return cb(a, b);
   }
- 
-  
   // 🦁🦁🦁 Step 2: Create several functions to callback with consume(); 🦁🦁🦁
 
  /*  Use add to do the following:
@@ -128,18 +119,17 @@ const zooAnimals = [
  2. Return the sum of those numbers
  */
 
-function add(/*Your Code Here */){
-    /*Your Code Here*/
+function add(a, b){
+    return a + b;
   }
-
 
 /* Use multiply to do the following:
 1. Receive two numbers as an argument that are passed in from its first and second parameters
 2. Return the product of those numbers
 */
 
-function multiply(/*Your Code Here */){
-   /*Your Code Here */
+function multiply(a, b){
+   return a * b;
   }
 
 
@@ -149,8 +139,8 @@ function multiply(/*Your Code Here */){
 💡 NOTE: The string returned must match the format above or the test will not pass!
 */
 
-function greeting(/*Your Code Here */){
-   return /*Your Code Here */
+function greeting(firstName, lastName){
+   return `Hello ${firstName} ${lastName}, nice to meet you!`;
   }
   
   
@@ -175,32 +165,40 @@ function greeting(/*Your Code Here */){
 - Instances of CuboidMaker should initialize `length`, `width` and `height` properties
 */
 
-function CuboidMaker(/*Your Code Here */){
-  /*Your Code Here */
-}
-
+function CuboidMaker(options){
+    this.length = options.length;
+    this.width = options.width;
+    this.height = options.height;
+  };
 
 /* 🐴🐴🐴 Step 2: Volume Method 🐴🐴🐴
   Create a method called volume using CuboidMaker's prototype that returns the volume of a given cuboid's length, width, and height
   💡 NOTE: Formula for cuboid volume: length * width * height   
 */
 
-
-
+CuboidMaker.prototype.volume = function(){
+  return this.length * this.width * this.height;
+}
 
 /* 🐴🐴🐴 Step 3: Surface Area Method 🐴🐴🐴
   Create another method called surfaceArea using CuboidMaker's prototype that returns the surface area of a given cuboid's length, width, and height. 
   💡 NOTE: Formula for cuboid surface area: 2 * (length * width + length * height + width * height)  
 */
 
-
+CuboidMaker.prototype.surfaceArea = function(){
+  return 2 * (this.length * this.width + this.length * this.height + this.width * this.height)
+}
 
 
 /* 🐴🐴🐴 Step 4: Create a new object that uses CuboidMaker (not auto graded)🐴🐴🐴
   Create an object called cuboid that uses the new keyword to use our CuboidMaker constructor
   Add properties and values of length: 4, width: 5, and height: 5 to cuboid. */
 
-
+  const cuboid = new CuboidMaker({
+    length: 4,
+    width: 5,
+    height: 5,
+})
 
 
 
