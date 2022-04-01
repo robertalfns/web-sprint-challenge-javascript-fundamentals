@@ -30,10 +30,13 @@ function myFunction() {
 💡 NOTE: you may use a for loop for this function if you wish 
 */
 
-function summation(/*Your Code Here*/) {
-  /*Your Code Here*/
-
-  }
+function summation(number){
+  let sum = 0;
+  for (let i = 1; i <= number; i++){
+    sum += i;
+}
+return sum;
+}
  
 
 // 🦁🦁🦁 Topic 2: ADVANCED Array Methods 🦁🦁🦁
@@ -60,8 +63,11 @@ const zooAnimals = [
   💡 NOTE: the array returned should be an array of strings, and each string should follow this pattern: "name: {name}, scientific: {scientific name}"
   */
 
-  function animalNames(
-
+  function animalNames(data) {
+    const displayNames = [];
+    data.forEach(animal => displayNames.push(`name: ${animal.animal_name}, scientific: ${animal.scientific_name}`))
+    return displayNames
+  }
   /* 🦁🦁🦁 Request 2: .map() 🦁🦁🦁
   The zoo needs a list of all their animal's names converted to lower case. 
   Use lowerCaseNames to do the following:
@@ -72,7 +78,9 @@ const zooAnimals = [
   💡 NOTE: Do some research for other methods that can help help you
   */
 
-
+  function lowerCaseNames(data){
+    const lowerCase = data.map((animal) => animal.animal_name.toLowerCase()); return lowerCase
+  }
   /* 🦁🦁🦁 Request 3: .filter() 🦁🦁🦁
   The zoo is concerned about animals with a lower population count. 
   Use lowPopulationAnimals to do the following: 
@@ -81,9 +89,10 @@ const zooAnimals = [
   3. Return this new array
   */
 
-   lowPopulationAnimals
-    /*Your Code Here*/
-
+  function lowPopulationAnimals(data){
+    const lowPop = data.filter((animal) => animal.population < 5); 
+    return lowPop 
+  }
   
 
   /* 🦁🦁🦁 Request 4: .reduce() 🦁🦁🦁
@@ -95,9 +104,10 @@ const zooAnimals = [
   💡 NOTE: Remember the reduce method takes two arguments: a callback (which itself takes two args - the accumulator and the item), and an initial value for the count. Check MDN/W3Schools for syntax!
   */
 
- 
-    /*Your Code Here*/
-  
+  function USApop(data){
+    const USApopReduced = data.reduce((total, animal) => total + animal.population, 0);
+    return USApopReduced
+  }
   
   
   // 🦁🦁🦁 Callbacks 🦁🦁🦁  
@@ -165,10 +175,10 @@ function greeting(firstName, lastName){
 - Instances of CuboidMaker should initialize `length`, `width` and `height` properties
 */
 
-function CuboidMaker(options){
-    this.length = options.length;
-    this.width = options.width;
-    this.height = options.height;
+function CuboidMaker(cuboid){
+    this.length = cuboid.length;
+    this.width = cuboid.width;
+    this.height = cuboid.height;
   };
 
 /* 🐴🐴🐴 Step 2: Volume Method 🐴🐴🐴
@@ -212,15 +222,30 @@ CuboidMaker.prototype.surfaceArea = function(){
 //Using CuboidMakerTwo, take your prototypes from above and refactor into class syntax. Then, create an object called cuboidTwo that uses the new keyword to use our CuboidMakerTwo class.
  
 class CuboidMakerTwo{
-
+  constructor (cuboidTwo) {
+    this.length = cuboidTwo.length;
+    this.width = cuboidTwo.width;
+    this.height = cuboidTwo.height;
+  }
+  volume() {
+    return this.length * this.width * this.height;
+  }
+  surfaceArea() {
+    return 2 * (this.length * this.width * this.length * this.height + this.width * this.height);
+  }
 }
 
+const cuboidTwo = new CuboidMakerTwo({
+  length: 4,
+  width: 5,
+  height: 5,
+})
 
 
 
 //🦄🦄🦄 Test your volume and surfaceArea methods by uncommenting the logs below: 🦄🦄🦄
-// console.log(cuboidTwo.volume()); // 100
-// console.log(cuboidTwo.surfaceArea()); // 130
+console.log(cuboidTwo.volume()); // 100
+console.log(cuboidTwo.surfaceArea()); // 130
 
 
 
